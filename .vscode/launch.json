@@ -1,0 +1,14 @@
+{
+  "configurations": [
+    {
+      "type": "java",
+      "name": "Spring Boot-MsVehicleApplication<ms-vehicle>",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "mainClass": "com.vmieres.msvehicle.MsVehicleApplication",
+      "projectName": "ms-vehicle",
+      "args": "",
+      "envFile": "${workspaceFolder}/.env"
+    }
+  ]
+}
