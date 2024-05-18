@@ -20,7 +20,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 @RestController
 @RequestMapping("/vehicle")
-@CrossOrigin("*")
 public class VehicleController {
     @Autowired 
     VehicleService vehicleService;
