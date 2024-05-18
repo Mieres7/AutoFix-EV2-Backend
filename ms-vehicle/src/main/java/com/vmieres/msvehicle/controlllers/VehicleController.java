@@ -2,6 +2,7 @@ package com.vmieres.msvehicle.controlllers;
 
 import org.springframework.web.bind.annotation.RestController;
 
+import com.vmieres.msvehicle.entities.VehicleEntity;
 import com.vmieres.msvehicle.services.VehicleService;
 
 import java.util.List;
@@ -23,4 +24,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 public class VehicleController {
     @Autowired 
     VehicleService vehicleService;
+
+    @PostMapping("/")
+    public ResponseEntity<VehicleEntity> saveVehicle(@RequestBody VehicleEntity vehicle) throws Exception {
+        VehicleEntity newVehicle = vehicleService.saveVehicle(vehicle);
+        return ResponseEntity.ok(newVehicle);
+    }
+
 }
