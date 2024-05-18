@@ -30,9 +30,9 @@ spring:
           uri: lb://ms-repair:8092
           predicates:
             - Path=/repair/**
-        - id: ms-repairlist
-          uri: lb://ms-repairlist:8093
-          predicates:
-        - id: ms-report
-          uri: lb://ms-report:8094
-          predicates:
+        # - id: ms-repairlist
+        #   uri: lb://ms-repairlist:8093
+        #   predicates:
+        # - id: ms-report
+        #   uri: lb://ms-report:8094
+        #   predicates:
