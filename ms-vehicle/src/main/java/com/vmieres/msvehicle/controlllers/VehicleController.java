@@ -24,7 +24,7 @@ public class VehicleController {
     @Autowired 
     VehicleService vehicleService;
 
-    @PostMapping("/")
+    @PostMapping("/save/")
     public ResponseEntity<VehicleEntity> saveVehicle(@RequestBody VehicleEntity vehicle) throws Exception {
         VehicleEntity newVehicle = vehicleService.saveVehicle(vehicle);
         return ResponseEntity.ok(newVehicle);

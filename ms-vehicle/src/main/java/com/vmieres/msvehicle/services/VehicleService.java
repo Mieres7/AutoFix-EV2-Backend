@@ -14,7 +14,9 @@ public class VehicleService {
     VehicleRepository vehicleRepository;
 
     public VehicleEntity saveVehicle(VehicleEntity vehicle) throws Exception {
-        
+
+        if (vehicle.getRepairs() != 0) vehicle.setRepairs(0);
+
         String registration = vehicle.getRegistration();
         String expression = "^[A-Z]{4}\\d{2}$";
         if(registration.matches(expression)){
