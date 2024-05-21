@@ -1,6 +1,5 @@
 package com.vmieres.msreport.entities;
 
-import java.time.YearMonth;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -23,7 +22,8 @@ public class ReportEntity {
     private Long reportId;
 
     private String repairTypeName;
-    private YearMonth period;
+    private String month;
+    private String year;
     private Integer sedan;  // represents how many sedan vehicles have this repair
     private Integer sedanAmount; // represents the total cost of sedan types repairs.
     private Integer hatchback; 

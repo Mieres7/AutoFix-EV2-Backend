@@ -1,6 +1,5 @@
 package com.vmieres.msreport.dto;
 
-import java.time.YearMonth;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -12,7 +11,8 @@ import lombok.NoArgsConstructor;
 public class RepairUpdateReportDto {
 
     private String repairTypeName;
-    private YearMonth date;
+    private String month;
+    private String year;
     private String vehicleType; 
     private Integer amount;
 

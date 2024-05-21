@@ -5,16 +5,17 @@ import org.springframework.stereotype.Repository;
 
 import com.vmieres.msreport.entities.ReportEntity;
 
-import java.time.YearMonth;
 import java.util.ArrayList;
 
 @Repository
 public interface ReportRepository extends JpaRepository<ReportEntity, Long>{
 
-    // public boolean existsByDate(YearMonth date);
+    public boolean existsByMonthAndYear(String month, String Year);
     
-    public ReportEntity findByRepairTypeNameAndPeriod(String repairTypeName, YearMonth period);
+    public ReportEntity findByRepairTypeNameAndMonthAndYear(String repairTypeName, String month, String year);
 
-    public ArrayList<ReportEntity> findAllByPeriod(YearMonth period);
+    public ArrayList<ReportEntity> findAllByMonthAndYear(String month, String year);
+
+    public ReportEntity findByMonthAndYear(String month, String year);
 
 }
