@@ -109,7 +109,7 @@ public class ReportService {
 
         List<ReportListDto> report = new ArrayList<>();
 
-        for(int i = 0; i < 1; i++){
+        for(int i = 0; i < DateActual.size(); i++){
             ReportEntity r = DateActual.get(i);
             ReportEntity r1 = DateMinusOne.get(i);
             ReportEntity r2 = DateMinusTwo.get(i);
