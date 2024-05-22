@@ -8,4 +8,8 @@ import com.vmieres.msrepair.entities.RepairEntity;
 @Repository
 public interface RepairRepository extends JpaRepository<RepairEntity, Long>{
     
+    public boolean existsByRegistration(String registration);
+
+    public RepairEntity findByRegistration(String registration);
+
 }

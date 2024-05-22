@@ -3,8 +3,12 @@ package com.vmieres.msrepair.services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 import com.vmieres.msrepair.dto.RepairDto;
+import com.vmieres.msrepair.entities.DetailEntity;
 import com.vmieres.msrepair.entities.RepairEntity;
+import com.vmieres.msrepair.repositories.DetailRepository;
 import com.vmieres.msrepair.repositories.RepairRepository;
 
 @Service
@@ -12,7 +16,28 @@ public class RepairService {
     @Autowired
     RepairRepository repairRepository;
 
+    @Autowired
+    DetailService detailService;
+
     public RepairEntity registerRepairs(RepairDto data){
+
+        if(repairRepository.existsByRegistration(data.getRegistration())){
+            RepairEntity repair = repairRepository.findByRegistration(data.getRegistration());
+            
+            // Actualizacion de valores
+            
+
+            // creacion de details
+                // para la creacion de details necestio costos
+            detailService.createDetails(data.getRepairs(), repair);
+ 
+        }else{
+
+            // new repair
+
+            // creacion de details
+
+        }
         
     }
 
