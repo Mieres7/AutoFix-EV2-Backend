@@ -33,4 +33,16 @@ public class RepairTypeCostService {
         }
         return savedRepairs;
     }
+
+    public List<String> getAllNames(){
+        List<RepairTypeCostEntity> repairTypes = repairTypeCostRepository.findAll();
+        List<String> repairName = new ArrayList<>();
+
+        for(RepairTypeCostEntity repair : repairTypes){
+            repairName.add(repair.getRepairType());
+        }
+
+        return repairName;
+    }
+
 }

@@ -24,15 +24,15 @@ public class ReportEntity {
     private String repairTypeName;
     private String month;
     private String year;
-    private Integer sedan;  // represents how many sedan vehicles have this repair
-    private Integer sedanAmount; // represents the total cost of sedan types repairs.
-    private Integer hatchback; 
-    private Integer hatchbackAmount;
-    private Integer pickup; 
-    private Integer pickupAmount;
-    private Integer suv; 
-    private Integer suvAmount;
-    private Integer van; 
-    private Integer vanAmount;
+    private int sedan;  // represents how many sedan vehicles have this repair
+    private int sedanAmount; // represents the total cost of sedan types repairs.
+    private int hatchback; 
+    private int hatchbackAmount;
+    private int pickup; 
+    private int pickupAmount;
+    private int suv; 
+    private int suvAmount;
+    private int van; 
+    private int vanAmount;
 
 }

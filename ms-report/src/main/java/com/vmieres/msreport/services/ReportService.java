@@ -16,6 +16,7 @@ import com.vmieres.msreport.repositories.ReportRepository;
 @Service
 public class ReportService {
 
+    @Autowired
     RepairListFeingClient feingClient;
     
     @Autowired
