@@ -3,6 +3,8 @@ package com.vmieres.msrepairlist.services;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.print.DocFlavor.READER;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -43,6 +45,25 @@ public class RepairTypeCostService {
         }
 
         return repairName;
+    }
+
+    public int getTypeCostValue(String repairName, String vehicleType){
+        
+        RepairTypeCostEntity repairTypeCost = repairTypeCostRepository.findByRepairType(repairName);
+
+        int typeCostValue = 0;
+
+        switch (vehicleType) {
+            case "DIESEL":
+                typeCostValue = repairTypeCost.getDieselCost();
+            case "GASOLINE":
+                typeCostValue=  repairTypeCost.getGasolineCost();
+            case "ELECTRIC":
+                typeCostValue = repairTypeCost.getElectricCost();
+            case "HYBRID":
+                typeCostValue = repairTypeCost.getHybridCost();
+        }
+        return typeCostValue;
     }
 
 }

@@ -21,6 +21,7 @@ public class DetailEntity {
     private String repairType;
     private LocalDateTime date;
     private int cost;
-    
+    private boolean checkOut;
+
     private Long repairId;
 }

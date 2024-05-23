@@ -27,6 +27,7 @@ public class RepairEntity {
     private int charges;
     private int discount;
     private int iva;
+    private int totalCostBeforeIva;
     private int totalCost;
 
     private boolean bonus;

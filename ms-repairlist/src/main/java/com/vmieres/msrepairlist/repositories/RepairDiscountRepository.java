@@ -4,11 +4,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import com.vmieres.msrepairlist.entities.RepairDiscountEntity;
-import com.vmieres.msrepairlist.entities.RepairTypeCostEntity;
 
 @Repository
-public interface RepairTypeCostRepository extends JpaRepository<RepairTypeCostEntity, Long>{
-
-    public RepairTypeCostEntity findByRepairType(String repairTypeName);
-
+public interface RepairDiscountRepository extends JpaRepository<RepairDiscountEntity, Long>{
+    
 }

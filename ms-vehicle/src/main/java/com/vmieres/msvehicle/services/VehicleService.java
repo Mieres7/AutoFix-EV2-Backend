@@ -4,7 +4,9 @@ package com.vmieres.msvehicle.services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.vmieres.msvehicle.entities.BrandEntity;
 import com.vmieres.msvehicle.entities.VehicleEntity;
+import com.vmieres.msvehicle.repositories.BrandRepository;
 import com.vmieres.msvehicle.repositories.VehicleRepository;
 
 @Service
@@ -12,6 +14,9 @@ public class VehicleService {
 
     @Autowired
     VehicleRepository vehicleRepository;
+
+    @Autowired
+    BrandRepository brandRepository;
 
     public VehicleEntity saveVehicle(VehicleEntity vehicle) throws Exception {
 
@@ -25,4 +30,13 @@ public class VehicleService {
             else throw new Exception("Vehicle already exists");
         }else throw new Exception("Invalid registration format");
     }
+
+    public VehicleEntity getVehicle(String registration){
+        VehicleEntity vehicle = vehicleRepository.findByRegistration(registration);
+        return vehicle;
+    }
+
+
+    
+
 }

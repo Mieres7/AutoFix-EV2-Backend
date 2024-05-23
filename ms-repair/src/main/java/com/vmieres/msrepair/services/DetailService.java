@@ -23,18 +23,16 @@ public class DetailService {
             DetailEntity detail = new DetailEntity();
             LocalDateTime date = LocalDateTime.now();
 
-            // aqui se tiene que calcular el costo de la reparacion
-            int cost = 10000;
-
             detail.setRepairType(repairType);
             detail.setDate(date);
             detail.setRepairId(repair.getRepairId());
-
-            detail.setCost(cost); // modificar!
-
+            detail.setCheckOut(false);
             detail = detailRepository.save(detail);
-            detail.setRepairId(repair.getRepairId());
         }
     }
+
+    
+
+    // funcion para actualizar valores cuando el cliente lo retira del local
 
 }
