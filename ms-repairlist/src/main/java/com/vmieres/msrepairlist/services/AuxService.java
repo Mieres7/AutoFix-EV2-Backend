@@ -6,38 +6,38 @@ import org.springframework.stereotype.Service;
 public class AuxService {
 
     public int getIndex(int repairs) {
-        if (repairs >= 1 && repairs <= 2) {
-            return 0;
-        } else if (repairs >= 3 && repairs <= 5) {
+        if (repairs >= 0 && repairs <= 2) {
             return 1;
-        } else if (repairs >= 6 && repairs <= 9) {
+        } else if (repairs >= 3 && repairs <= 5) {
             return 2;
-        } else
+        } else if (repairs >= 6 && repairs <= 9) {
             return 3;
+        } else
+            return 4;
     }
 
     public int getIndex2(int km) {
         if (km >= 0 && km <= 5000) {
-            return 0;
-        } else if (km >= 5001 && km <= 12000) {
             return 1;
-        } else if (km >= 12001 && km <= 25000) {
+        } else if (km >= 5001 && km <= 12000) {
             return 2;
-        } else if (km >= 25001 &&  km <= 40000) {
+        } else if (km >= 12001 && km <= 25000) {
             return 3;
-        } else 
+        } else if (km >= 25001 &&  km <= 40000) {
             return 4;
+        } else 
+            return 5;
     }
 
     public int getIndex3(int age) {
         if (age >= 0 && age <= 5) {
-            return 0;
-        } else if (age >= 6 && age <= 10) {
             return 1;
-        } else if (age >= 11 && age <= 15) {
+        } else if (age >= 6 && age <= 10) {
             return 2;
-        } else 
+        } else if (age >= 11 && age <= 15) {
             return 3;
+        } else 
+            return 4;
     }
 
 }

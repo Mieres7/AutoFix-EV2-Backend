@@ -8,9 +8,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.vmieres.msrepair.clients.AgeChargeClient;
-import com.vmieres.msrepair.clients.KilometerChargeClient;
-import com.vmieres.msrepair.clients.RepairDiscountClient;
 import com.vmieres.msrepair.clients.RepairListFeingClient;
 import com.vmieres.msrepair.clients.VehicleFeingClient;
 import com.vmieres.msrepair.entities.DetailEntity;
@@ -24,22 +21,16 @@ public class AuxService {
     @Autowired
     VehicleFeingClient VfeingClient;
 
-    @Autowired
-    RepairDiscountClient RDFeingClient;
 
-    @Autowired
-    KilometerChargeClient KMCFeingClient;
 
-    @Autowired
-    AgeChargeClient ACFeingClient;
-
-    public List<Integer> getTypeCosts(List<DetailEntity> details, String vehicleType){
+    public List<Integer> getTypeCosts(List<DetailEntity> details, String motorType){
 
         List<Integer> typeCosts = new ArrayList<>();
         for(DetailEntity detail: details){
-            int c = RLfeingClient.getTypeCostValue(detail.getRepairType(), vehicleType);
+            int c = RLfeingClient.getTypeCostValue(detail.getRepairType(), motorType);
             typeCosts.add(c);
         }
+        System.out.println(typeCosts);
         return typeCosts;
     }
 
@@ -66,7 +57,7 @@ public class AuxService {
 
         //Discounts
         // 1. this value represents the discount by number of repairs
-        float repairDiscount =  RDFeingClient.getDiscount(repairs_, motorType); 
+        float repairDiscount =  RLfeingClient.getDiscountRepairs(repairs_, motorType); 
         int finalRepairDiscount = (int)( totalBaseCost * repairDiscount);
         // 2. it gets a 10% of discount depending on the day that the repair is registered
         int fintalAttentionDiscount = (attentionDay) ? (int)(totalBaseCost * 0.1) : 0;
@@ -75,10 +66,10 @@ public class AuxService {
 
         //Charges
         // 1. km charge
-        float kmCharge = KMCFeingClient.getDiscount(km, vehicleType);
+        float kmCharge = RLfeingClient.getDiscountKM(km, vehicleType);
         int finalKmCharge = (int)(totalBaseCost * kmCharge);
         // 2. age charge
-        float ageCharge = ACFeingClient.getDiscount(age, vehicleType);
+        float ageCharge = RLfeingClient.getDiscountAge(age, vehicleType);
         int finalAgeCharge = (int)(totalBaseCost * ageCharge);
         //  3. late charge
         int lateCharge = (int)(totalBaseCost * daysBetween * 0.05);
@@ -97,8 +88,6 @@ public class AuxService {
         totalCost.add(repairTotalCost);
 
         return totalCost;
-        //REVISAR CUANDO SE TRIGGEREA LA FUNCION, LUEGO PROBAR QUE TODO FUNCIONE.
-
     }
 
 }

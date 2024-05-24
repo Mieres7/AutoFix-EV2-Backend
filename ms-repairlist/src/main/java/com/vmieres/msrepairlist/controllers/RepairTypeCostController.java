@@ -36,8 +36,8 @@ public class RepairTypeCostController {
     }
 
     @GetMapping("/get-type-cost")
-    public ResponseEntity<Integer> getTypeCostValue(@RequestParam String repairName, @RequestParam String vehicleType){
-        int typeCostValue = repairTypeCostService.getTypeCostValue(repairName, vehicleType);
+    public ResponseEntity<Integer> getTypeCostValue(@RequestParam String repairName, @RequestParam String motorType){
+        int typeCostValue = repairTypeCostService.getTypeCostValue(repairName, motorType);
         return ResponseEntity.ok(typeCostValue);
     }
 

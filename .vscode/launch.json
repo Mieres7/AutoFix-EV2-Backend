@@ -62,6 +62,16 @@
       "projectName": "ms-repairlist",
       "args": "",
       "envFile": "${workspaceFolder}/.env"
+    },
+    {
+      "type": "java",
+      "name": "Spring Boot-MsRepairApplication<ms-repair>",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "mainClass": "com.vmieres.msrepair.MsRepairApplication",
+      "projectName": "ms-repair",
+      "args": "",
+      "envFile": "${workspaceFolder}/.env"
     }
   ]
 }

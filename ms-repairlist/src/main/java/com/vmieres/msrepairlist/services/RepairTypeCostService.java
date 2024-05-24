@@ -47,22 +47,27 @@ public class RepairTypeCostService {
         return repairName;
     }
 
-    public int getTypeCostValue(String repairName, String vehicleType){
+    public int getTypeCostValue(String repairName, String motorType){
         
         RepairTypeCostEntity repairTypeCost = repairTypeCostRepository.findByRepairType(repairName);
-
+        
         int typeCostValue = 0;
 
-        switch (vehicleType) {
+        switch (motorType) {
             case "DIESEL":
                 typeCostValue = repairTypeCost.getDieselCost();
+                break;
             case "GASOLINE":
                 typeCostValue=  repairTypeCost.getGasolineCost();
+                break;
             case "ELECTRIC":
                 typeCostValue = repairTypeCost.getElectricCost();
+                break;
             case "HYBRID":
                 typeCostValue = repairTypeCost.getHybridCost();
+                break;
         }
+        
         return typeCostValue;
     }
 

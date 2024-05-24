@@ -16,6 +16,7 @@ import lombok.NoArgsConstructor;
 public class RepairEntity {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(unique = true, nullable = false)
     private Long repairId;
 

@@ -1,15 +1,10 @@
 package com.vmieres.msrepair.services;
 
-import org.bouncycastle.jcajce.provider.asymmetric.dsa.DSASigner.detDSA;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cglib.core.Local;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
-
-import com.vmieres.msrepair.clients.BrandClient;
 import com.vmieres.msrepair.clients.RepairListFeingClient;
 import com.vmieres.msrepair.clients.VehicleFeingClient;
 import com.vmieres.msrepair.dto.RepairDto;
@@ -18,10 +13,6 @@ import com.vmieres.msrepair.entities.DetailEntity;
 import com.vmieres.msrepair.entities.RepairEntity;
 import com.vmieres.msrepair.repositories.DetailRepository;
 import com.vmieres.msrepair.repositories.RepairRepository;
-
-
-// import java.util.TimeZone;
-import java.time.Duration;
 
 @Service
 public class RepairService {
@@ -43,39 +34,42 @@ public class RepairService {
     @Autowired
     VehicleFeingClient VfeingClient;
 
-    @Autowired 
-    BrandClient BfeingClient;
     
     // register of a repair with all its details and values set on 0.
     // they get calculated on the checkout time.
     public RepairEntity registerRepairs(RepairDto data){
 
         RepairEntity repair;
-        if(!repairRepository.existsByRegistration(data.getRegistration()))
+        if(repairRepository.existsByRegistration(data.getRegistration()))
             repair = repairRepository.findByRegistration(data.getRegistration());
         else
-            repair = initialRepair(data.getRegistration());
-
+            repair = initialRepair(data.getRegistration(),data.isBonus());
+        
         detailService.createDetails(data.getRepairs(), repair);
         return repair;
     }
 
     // this method sets a repair with its initial necesary values
-    public RepairEntity initialRepair(String registration){
+    public RepairEntity initialRepair(String registration, boolean bonus){
         RepairEntity repair = new RepairEntity();
         LocalDateTime checkIn = LocalDateTime.now();
 
         repair.setCheckIn(checkIn);
         repair.setRegistration(registration);
-        return repair;
+        repair.setBonus(bonus);        
+        return repairRepository.save(repair);
     }
 
     // update a repair when the car gets out of the workshop
-    public void checkOutWorkshop(Long repairId){
+    public RepairEntity checkOutWorkshop(Long repairId){
         RepairEntity repair = repairRepository.findById(repairId).get();
         LocalDateTime checkOutWorkshop = LocalDateTime.now();
         repair.setCheckOut(checkOutWorkshop);
-        repairRepository.save(repair);
+        return repairRepository.save(repair);
+    }
+
+    public RepairEntity checkOutClient(Long repairId){
+        return getRepairCost(repairId);
     }
 
     // this method calculate the cost of a repair whith all ist detail included
@@ -85,12 +79,12 @@ public class RepairService {
 
         RepairEntity repair = repairRepository.findById(repairId).get();
         List<DetailEntity> details = detailRepository.findAllByRepairId(repairId);
-
+        System.out.println("chao1");
         VehicleDto vehicle = VfeingClient.getVehicle(repair.getRegistration());
-
+        System.out.println("chao");
         // get data from vehicle
         // type costs
-        List<Integer> typeCosts = auxService.getTypeCosts(details, vehicle.getVehicleType());
+        List<Integer> typeCosts = auxService.getTypeCosts(details, vehicle.getMotorType());
 
         //#repairs, 
         int repairs_ = vehicle.getRepairs();
@@ -102,7 +96,7 @@ public class RepairService {
         int bonus = 0;
         if(repair.isBonus()){
             // search the bonus value
-            bonus = BfeingClient.getBonus(vehicle.getBrand_id());
+            bonus = VfeingClient.getBonus(vehicle.getBrand_id());
         }
         //attention day,
         boolean attentionDayDiscount = auxService.isAttentionDayDiscount(repair.getCheckIn());
@@ -119,6 +113,10 @@ public class RepairService {
 
         List<Integer> totalCost = auxService.getTotalCost(totalBaseCost, repairs_, km, age, bonus, attentionDayDiscount, daysBetween, vehicle.getVehicleType(), vehicle.getMotorType());
 
+        LocalDateTime checkOutClient = LocalDateTime.now();
+        repair.setClientCheckOut(checkOutClient);
+
+        repair.setRepairs(totalBaseCost);
         repair.setDiscount(totalCost.get(0));
         repair.setCharges(totalCost.get(1));
         repair.setIva(totalCost.get(2));
@@ -128,7 +126,9 @@ public class RepairService {
         return repairRepository.save(repair);
     }
 
-    
+    public int gVehicleDto(Long registration){
+        return VfeingClient.getBonus(registration);
+    }
 
 
 }
