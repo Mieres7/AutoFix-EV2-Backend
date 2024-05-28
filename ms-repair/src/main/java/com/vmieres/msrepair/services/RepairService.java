@@ -6,8 +6,10 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 import java.util.List;
 import com.vmieres.msrepair.clients.RepairListFeingClient;
+import com.vmieres.msrepair.clients.ReportFeingClient;
 import com.vmieres.msrepair.clients.VehicleFeingClient;
 import com.vmieres.msrepair.dto.RepairDto;
+import com.vmieres.msrepair.dto.RepairUpdateReportDto;
 import com.vmieres.msrepair.dto.VehicleDto;
 import com.vmieres.msrepair.entities.DetailEntity;
 import com.vmieres.msrepair.entities.RepairEntity;
@@ -33,6 +35,9 @@ public class RepairService {
 
     @Autowired
     VehicleFeingClient VfeingClient;
+
+    @Autowired
+    ReportFeingClient RfeingClient;
 
     
     // register of a repair with all its details and values set on 0.
@@ -79,9 +84,9 @@ public class RepairService {
 
         RepairEntity repair = repairRepository.findById(repairId).get();
         List<DetailEntity> details = detailRepository.findAllByRepairId(repairId);
-        System.out.println("chao1");
+        
         VehicleDto vehicle = VfeingClient.getVehicle(repair.getRegistration());
-        System.out.println("chao");
+        
         // get data from vehicle
         // type costs
         List<Integer> typeCosts = auxService.getTypeCosts(details, vehicle.getMotorType());
@@ -123,12 +128,26 @@ public class RepairService {
         repair.setTotalCostBeforeIva(totalCost.get(3));
         repair.setTotalCost(totalCost.get(4));
 
+        // set/update report
+        RepairUpdateReportDto report = new RepairUpdateReportDto();
+        
+        LocalDateTime date = repair.getCheckIn();
+        int month = date.getMonthValue();
+        int year = date.getYear();
+        
+        report.setRepairTypeName(details.get(0).getRepairType());
+        String monthString = String.format("%02d", month); 
+        String yearString = String.valueOf(year);
+        report.setMonth(monthString);
+        report.setYear(yearString);
+        report.setVehicleType(vehicle.getVehicleType());
+        report.setAmount(totalBaseCost);
+
+        RfeingClient.repairUpdateReport(report); 
+
         return repairRepository.save(repair);
     }
 
-    public int gVehicleDto(Long registration){
-        return VfeingClient.getBonus(registration);
-    }
 
 
 }
