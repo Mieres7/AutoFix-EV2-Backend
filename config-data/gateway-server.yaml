@@ -43,3 +43,4 @@ spring:
         - id: ms-report
           uri: lb://ms-report:8094
           predicates:
+            - Path=/report/**
