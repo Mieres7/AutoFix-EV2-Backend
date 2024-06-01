@@ -28,7 +28,6 @@ spring:
           uri: lb://ms-vehicle:8091
           predicates:
             - Path=/vehicle/**
-            - Path=/brand/**
         - id: ms-repair
           uri: lb://ms-repair:8092
           predicates:

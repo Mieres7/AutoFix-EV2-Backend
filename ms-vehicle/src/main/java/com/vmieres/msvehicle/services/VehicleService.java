@@ -4,7 +4,6 @@ package com.vmieres.msvehicle.services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.vmieres.msvehicle.entities.BrandEntity;
 import com.vmieres.msvehicle.entities.VehicleEntity;
 import com.vmieres.msvehicle.repositories.BrandRepository;
 import com.vmieres.msvehicle.repositories.VehicleRepository;
