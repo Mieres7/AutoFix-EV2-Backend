@@ -29,7 +29,7 @@ spring:
           predicates:
             - Path=/vehicle/**
         - id: ms-vehicle-brand
-          uri: "lb://vehicle:8091"
+          uri: "lb://ms-vehicle:8091"
           predicates:
             - Path=/brand/**
         - id: ms-repair
