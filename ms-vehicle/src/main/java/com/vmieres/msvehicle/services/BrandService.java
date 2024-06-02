@@ -6,6 +6,8 @@ import org.springframework.stereotype.Service;
 import com.vmieres.msvehicle.entities.BrandEntity;
 import com.vmieres.msvehicle.repositories.BrandRepository;
 
+import java.util.List;
+
 @Service
 public class BrandService {
 
@@ -22,6 +24,10 @@ public class BrandService {
     public int getBonus(Long brandId){
         BrandEntity b = brandRepository.findById(brandId).get();
         return b.getDiscount();
+    }
+
+    public List<BrandEntity> getAllBrand(){
+        return brandRepository.findAll();
     }
 
 }
