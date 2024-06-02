@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.util.List;
 
 @RestController
 @RequestMapping("/repair")
@@ -21,6 +22,12 @@ public class RepairController {
     
     @Autowired
     RepairService repairService;
+
+    @GetMapping("/get-all")
+    public ResponseEntity<List<RepairEntity>> getAll(){
+        List<RepairEntity> repairs = repairService.getAll();
+        return ResponseEntity.ok(repairs);
+    }
 
     @PostMapping("/register")
     public ResponseEntity<RepairEntity> regiserRepair(@RequestBody RepairDto data){

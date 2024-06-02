@@ -148,6 +148,9 @@ public class RepairService {
         return repairRepository.save(repair);
     }
 
+    public List<RepairEntity> getAll(){
+        return repairRepository.findAll();
+    }
 
 
 }

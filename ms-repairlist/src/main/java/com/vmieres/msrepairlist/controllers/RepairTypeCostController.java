@@ -17,7 +17,6 @@ import com.vmieres.msrepairlist.services.RepairTypeCostService;
 
 @RestController
 @RequestMapping("/repair-list")
-@CrossOrigin("*")
 public class RepairTypeCostController {
     
     @Autowired
