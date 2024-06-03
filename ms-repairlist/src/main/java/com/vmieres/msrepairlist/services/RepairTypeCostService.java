@@ -16,23 +16,9 @@ public class RepairTypeCostService {
     @Autowired
     RepairTypeCostRepository repairTypeCostRepository;
 
-    public List<RepairTypeCostEntity> registerRepairTypeCost(List<RepairTypeCostEntity> repairs){
-
-        List<RepairTypeCostEntity> savedRepairs = new ArrayList<>();
-
-        for (RepairTypeCostEntity repair : repairs) {
-            
-            RepairTypeCostEntity r = new RepairTypeCostEntity();
-            r.setRepairType(repair.getRepairType());
-            r.setDescription(repair.getDescription());
-            r.setGasolineCost(repair.getGasolineCost());
-            r.setDieselCost(repair.getDieselCost());
-            r.setHybridCost(repair.getHybridCost());
-            r.setElectricCost(repair.getElectricCost());
-            repairTypeCostRepository.save(r);
-            savedRepairs.add(r);
-        }
-        return savedRepairs;
+    public RepairTypeCostEntity registerRepairTypeCost(RepairTypeCostEntity repairs){
+       
+        return repairTypeCostRepository.save(repairs);
     }
 
     public List<String> getAllNames(){
@@ -68,6 +54,10 @@ public class RepairTypeCostService {
         }
         
         return typeCostValue;
+    }
+
+    public List<RepairTypeCostEntity> getAll(){
+        return repairTypeCostRepository.findAll();
     }
 
 }

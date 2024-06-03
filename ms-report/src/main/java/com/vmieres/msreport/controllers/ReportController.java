@@ -16,13 +16,13 @@ import com.vmieres.msreport.services.ReportService;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 
 
 
 @RestController
 @RequestMapping("/report")
-@CrossOrigin("*")
 public class ReportController {
 
     @Autowired
@@ -40,15 +40,15 @@ public class ReportController {
         return ResponseEntity.ok(report);
     }
 
-    @GetMapping("/get-all")
-    public ResponseEntity<List<ReportEntity>> getReports(@RequestBody DateDto period) {
-        List<ReportEntity> reports = reportService.getReports(period.getMonth(), period.getYear());
+    @GetMapping("/get-all/{month}/{year}")
+    public ResponseEntity<List<ReportEntity>> getReports(@PathVariable String month, @PathVariable String year) {
+        List<ReportEntity> reports = reportService.getReports(month, year);
         return ResponseEntity.ok(reports);
     }
     
-    @GetMapping("/get-comparison")
-    public ResponseEntity<List<ReportListDto>> getReportComparison(@RequestBody DateDto period){
-        List<ReportListDto> report = reportService.getReportsComparison(period.getMonth(), period.getYear());
+    @GetMapping("/get-comparison/{month}/{year}")
+    public ResponseEntity<List<ReportListDto>> getReportComparison(@PathVariable String month, @PathVariable String year){
+        List<ReportListDto> report = reportService.getReportsComparison(month, year);
         return ResponseEntity.ok(report);
     }
 

@@ -2,7 +2,6 @@ package com.vmieres.msrepairlist.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -23,8 +22,8 @@ public class RepairTypeCostController {
     RepairTypeCostService repairTypeCostService;
 
     @PostMapping("/save-repairs")
-    public ResponseEntity<List<RepairTypeCostEntity>> registerRepairTypeCosts(@RequestBody List<RepairTypeCostEntity> repairs){
-        List<RepairTypeCostEntity> repairList = repairTypeCostService.registerRepairTypeCost(repairs);
+    public ResponseEntity<RepairTypeCostEntity> registerRepairTypeCosts(@RequestBody RepairTypeCostEntity repairs){
+        RepairTypeCostEntity repairList = repairTypeCostService.registerRepairTypeCost(repairs);
         return ResponseEntity.ok(repairList);
     }
 
@@ -38,6 +37,12 @@ public class RepairTypeCostController {
     public ResponseEntity<Integer> getTypeCostValue(@RequestParam String repairName, @RequestParam String motorType){
         int typeCostValue = repairTypeCostService.getTypeCostValue(repairName, motorType);
         return ResponseEntity.ok(typeCostValue);
+    }
+
+    @GetMapping("/get-all")
+    public ResponseEntity<List<RepairTypeCostEntity>> getAll(){
+        List<RepairTypeCostEntity> rl = repairTypeCostService.getAll();
+        return ResponseEntity.ok(rl);
     }
 
 }
