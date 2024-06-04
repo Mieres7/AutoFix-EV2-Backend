@@ -1,0 +1,90 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: db-report-pv
+  labels:
+    type: local
+spec:
+  storageClassName: standard
+  capacity:
+    storage: 1Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: "/data/db-report-data"
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: db-report-pvc
+  labels:
+    app: postgres
+    tier: database
+spec:
+  storageClassName: standard
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: db-report-deployment
+  labels:
+    app: db-report-deployment
+    tier: database
+spec:
+  selector:
+    matchLabels:
+      app: db-report-deployment
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: db-report-deployment
+        tier: database
+    spec:
+      containers:
+        - name: db-report
+          image: postgres
+          imagePullPolicy: "IfNotPresent"
+          ports:
+            - containerPort: 5432
+          env:
+            - name: POSTGRES_USER
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-credentials
+                  key: DB_USER
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-credentials
+                  key: DB_PASSWORD
+          volumeMounts:
+            - mountPath: /var/lib/postgresql/data
+              name: db-report-data
+      volumes:
+        - name: db-report-data
+          persistentVolumeClaim:
+            claimName: db-report-pvc
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: db-report-service
+  labels:
+    app: db-report-service
+    tier: database
+spec:
+  ports:
+    - port: 5432
+      targetPort: 5432
+      protocol: TCP
+  selector:
+    app: db-report-deployment
+    tier: database
+  type: LoadBalancer

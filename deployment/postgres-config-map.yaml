@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: postgres-config-map
+  labels:
+    app: postgres-config-map
+data:
+  DB_HOST_VEHICLE: vehicle-db-service
+  DB_PORT_VEHICLE: "5432"
+  DB_NAME_VEHICLE: ms-vehicleDB
+
+  DB_HOST_REPAIR: repair-db-service
+  DB_PORT_REPAIR: "5433"
+  DB_NAME_REPAIR: ms-repairDB
+
+  DB_HOST_REPAIRLIST: repairlist-db-service
+  DB_PORT_REPAIRLIST: "5434"
+  DB_NAME_REPAIRLIST: ms-repairlistDB
+
+  DB_HOST_REPORT: report-db-service
+  DB_PORT_REPORT: "5435"
+  DB_NAME_REPORT: ms-reportDB

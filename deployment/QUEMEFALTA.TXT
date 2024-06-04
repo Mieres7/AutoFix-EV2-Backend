@@ -1,0 +1,57 @@
+PUERTO DINAMICOS, Y PROBAR LA WEA, VER LO DEL SCRIPT DE DB. Y VER EL FRONT NSE COMO CHUCHA SE HACE
+
+SCRIPTS FINALES
+
+ms-vehicle
+
+INSERT INTO brand(bonus, bonus_amount, discount, brand_id, brand_name, period) VALUES
+(true, 0, 0, 1, 'TOYOTA','01-2024'),
+(true, 0, 0, 2, 'FORD','01-2024'),
+(true, 0, 0, 3, 'HYUNDAI','01-2024'),
+(true, 0, 0, 4, 'HONDA','01-2024'),
+(false, 0, 0, 5, 'CHEVROLET', '01-2024'),
+(false, 0, 0, 6, 'NISSAN', '01-2024'),
+(false, 0, 0, 7, 'VOLKSWAGEN', '01-2024'),
+(false, 0, 0, 8, 'MAZDA', '01-2024'),
+(false, 0, 0, 9, 'SUBARU', '01-2024'),
+(false, 0, 0, 10, 'KIA', '01-2024'),
+(false, 0, 0, 11, 'MITSUBISHI', '01-2024'),
+(false, 0, 0, 12, 'BMW', '01-2024'),
+(false, 0, 0, 13, 'MERCEDES-BENZ', '01-2024'),
+(false, 0, 0, 14, 'AUDI', '01-2024');
+
+
+ms-RepairList
+
+INSERT INTO repair_discount (repair_discount_id, gasoline_cost, diesel_cost, hybrid_cost, electric_cost) VALUES
+(1, 0.05, 0.07, 0.10, 0.08),
+(2, 0.10, 0.12, 0.15, 0.13),
+(3, 0.15, 0.17, 0.20, 0.18),
+(4, 0.20, 0.22, 0.25, 0.23);
+
+INSERT INTO age_charge (age_charge_id, sedan_charge, hatchback_charge, suv_charge, pickup_charge, van_charge) VALUES
+(1, 0.00, 0.00, 0.00, 0.00, 0.00),
+(2, 0.05, 0.05, 0.07, 0.07, 0.07),
+(3, 0.09, 0.09, 0.11, 0.11, 0.11),
+(4, 0.15, 0.15, 0.20, 0.20, 0.20);
+
+INSERT INTO kilometer_charge (kilometer_charge_id, sedan_charge, hatchback_charge, suv_charge, pickup_charge, van_charge) VALUES
+(1, 0.00, 0.00, 0.00, 0.00, 0.00),
+(2, 0.03, 0.03, 0.05, 0.05, 0.05),
+(3, 0.07, 0.07, 0.09, 0.09, 0.09),
+(4, 0.12, 0.12, 0.12, 0.12, 0.12),
+(5, 0.20, 0.20, 0.20, 0.20, 0.20);
+
+
+
+INSERT INTO report (repair_type_name, month, year, sedan, sedan_amount, hatchback, hatchback_amount, pickup, pickup_amount, suv, suv_amount, van, van_amount) VALUES
+('Brake System Repairs', '12', '2023', 4, 480000, 5, 240000, 6, 360000, 3, 120000, 2, 240000),
+('Brake System Repairs', '01', '2024', 7, 360000, 8, 120000, 5, 240000, 6, 360000, 4, 480000),
+('Brake System Repairs', '02', '2024', 6, 240000, 7, 360000, 3, 480000, 5, 120000, 8, 240000),
+('Brake System Repairs', '03', '2024', 9, 360000, 3, 120000, 7, 240000, 4, 480000, 6, 360000),
+('Brake System Repairs', '04', '2024', 8, 120000, 5, 480000, 2, 360000, 9, 240000, 7, 360000),
+('Cooling System Service', '12', '2023', 3, 420000, 4, 300000, 5, 360000, 6, 240000, 7, 180000),
+('Cooling System Service', '01', '2024', 6, 360000, 7, 150000, 4, 300000, 5, 420000, 3, 480000),
+('Cooling System Service', '02', '2024', 5, 300000, 6, 420000, 7, 480000, 4, 150000, 2, 240000),
+('Cooling System Service', '03', '2024', 8, 360000, 2, 150000, 6, 300000, 5, 480000, 3, 420000),
+('Cooling System Service', '04', '2024', 7, 150000, 5, 480000, 3, 360000, 6, 240000, 4, 420000);
