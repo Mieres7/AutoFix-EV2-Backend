@@ -69,10 +69,6 @@ public class ReportService {
     public void generateEmptyReports(String month, String year){
 
         List<String> repairNames = feingClient.getRepairTypeNames(); 
-        // List<String> repairNames = new ArrayList<>();
-        // repairNames.add("repair1");
-        // repairNames.add("repair2");
-        // repairNames.add("repair3");
 
         for (String name : repairNames) {
             ReportEntity report = new ReportEntity();
@@ -106,7 +102,7 @@ public class ReportService {
         List<ReportEntity> DateActual = reportRepository.findAllByMonthAndYear(month, year);
         List<ReportEntity> DateMinusOne = reportRepository.findAllByMonthAndYear(previousThreeMonths.get(0), previousThreeMonths.get(1));
         List<ReportEntity> DateMinusTwo = reportRepository.findAllByMonthAndYear(previousThreeMonths.get(2), previousThreeMonths.get(3));
-        List<ReportEntity> DateMinusThree = reportRepository.findAllByMonthAndYear(previousThreeMonths.get(4), previousThreeMonths.get(5));
+        // List<ReportEntity> DateMinusThree = reportRepository.findAllByMonthAndYear(previousThreeMonths.get(4), previousThreeMonths.get(5));
 
         List<ReportListDto> report = new ArrayList<>();
 
@@ -114,16 +110,21 @@ public class ReportService {
             ReportEntity r = DateActual.get(i);
             ReportEntity r1 = DateMinusOne.get(i);
             ReportEntity r2 = DateMinusTwo.get(i);
-            ReportEntity r3 = DateMinusThree.get(i);
+            // ReportEntity r3 = DateMinusThree.get(i);
+
+            int vehiclesActual = r.getHatchback() + r.getPickup() + r.getSedan() + r.getVan() + r.getSuv();
+            int costActual = r.getHatchbackAmount() + r.getPickupAmount() + r.getSedanAmount() + r.getSuvAmount() + r.getVanAmount();
+            ReportDataDto actual = new ReportDataDto(month,vehiclesActual, 0, costActual, 0);
 
             ReportDataDto data1 = dateService.createReportData(r, r1);
-            ReportDataDto data2 = dateService.createReportData(r, r2);
-            ReportDataDto data3 = dateService.createReportData(r, r3);
+            ReportDataDto data2 = dateService.createReportData(r1, r2);
+            // ReportDataDto data3 = dateService.createReportData(r, r3);
 
             List<ReportDataDto> dataList = new ArrayList<>();
+            dataList.add(actual);
             dataList.add(data1);
             dataList.add(data2);
-            dataList.add(data3);
+            // dataList.add(data3);
 
             ReportListDto list = new ReportListDto();
             list.setRepairTypeName(r.getRepairTypeName());
