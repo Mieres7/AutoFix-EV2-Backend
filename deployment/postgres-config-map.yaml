@@ -14,6 +14,6 @@ data:
   DB_HOST_REPAIRLIST: db-repairlist-service
   DB_PORT_REPAIRLIST: "5434"
   DB_NAME_REPAIRLIST: msrepairlistdb
-  DB_HOST_REPORT: db-report -service
+  DB_HOST_REPORT: db-report-service
   DB_PORT_REPORT: "5435"
   DB_NAME_REPORT: msreportdb
