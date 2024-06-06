@@ -7,7 +7,7 @@ metadata:
 data:
   DB_HOST_VEHICLE: vehicle-db-service
   DB_PORT_VEHICLE: "5432"
-  DB_NAME_VEHICLE: msvehicleDB
+  DB_NAME_VEHICLE: msvehicledb
 
   DB_HOST_REPAIR: repair-db-service
   DB_PORT_REPAIR: "5433"
