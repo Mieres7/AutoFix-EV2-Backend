@@ -8,15 +8,12 @@ data:
   DB_HOST_VEHICLE: vehicle-db-service
   DB_PORT_VEHICLE: "5432"
   DB_NAME_VEHICLE: msvehicledb
-
   DB_HOST_REPAIR: repair-db-service
   DB_PORT_REPAIR: "5433"
-  DB_NAME_REPAIR: msrepairDB
-
+  DB_NAME_REPAIR: msrepairdb
   DB_HOST_REPAIRLIST: repairlist-db-service
   DB_PORT_REPAIRLIST: "5434"
-  DB_NAME_REPAIRLIST: msrepairlistDB
-
+  DB_NAME_REPAIRLIST: msrepairlistdb
   DB_HOST_REPORT: report-db-service
   DB_PORT_REPORT: "5435"
-  DB_NAME_REPORT: msreportDB
+  DB_NAME_REPORT: msreportdb

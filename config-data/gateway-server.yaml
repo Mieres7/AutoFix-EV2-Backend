@@ -25,22 +25,22 @@ spring:
             allow-credentials: true
       routes:
         - id: ms-vehicle
-          uri: lb://ms-vehicle:8091
+          uri: lb://ms-vehicle
           predicates:
             - Path=/vehicle/**
         - id: ms-vehicle-brand
-          uri: "lb://ms-vehicle:8091"
+          uri: lb://ms-vehicle
           predicates:
             - Path=/brand/**
         - id: ms-repair
-          uri: lb://ms-repair:8092
+          uri: lb://ms-repair
           predicates:
             - Path=/repair/**
         - id: ms-repairlist
-          uri: lb://ms-repairlist:8093
+          uri: lb://ms-repairlist
           predicates:
             - Path=/repair-list/**
         - id: ms-report
-          uri: lb://ms-report:8094
+          uri: lb://ms-report
           predicates:
             - Path=/report/**
