@@ -11,12 +11,12 @@ data:
 
   DB_HOST_REPAIR: repair-db-service
   DB_PORT_REPAIR: "5433"
-  DB_NAME_REPAIR: ms-repairDB
+  DB_NAME_REPAIR: msrepairDB
 
   DB_HOST_REPAIRLIST: repairlist-db-service
   DB_PORT_REPAIRLIST: "5434"
-  DB_NAME_REPAIRLIST: ms-repairlistDB
+  DB_NAME_REPAIRLIST: msrepairlistDB
 
   DB_HOST_REPORT: report-db-service
   DB_PORT_REPORT: "5435"
-  DB_NAME_REPORT: ms-reportDB
+  DB_NAME_REPORT: msreportDB
