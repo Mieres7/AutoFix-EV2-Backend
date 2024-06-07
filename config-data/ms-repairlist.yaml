@@ -5,6 +5,10 @@ spring:
     url: jdbc:postgresql://${DB_HOST}:${DB_PORT}/${DB_NAME}
     username: ${DB_USER}
     password: ${DB_PASSWORD}
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
 eureka:
   instance:
     preferIdAddress: true
@@ -12,4 +16,4 @@ eureka:
     fetch-registry: true
     register-with-eureka: true
     service-url:
-      default-zone: http://eureka-server-service:8761/eureka
+      defaultZone: http://eureka-server-service:8761/eureka/
