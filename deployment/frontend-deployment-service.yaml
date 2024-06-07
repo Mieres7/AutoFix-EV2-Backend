@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: frontend
-          image: mieres/autofix-frontend
+          image: mieres/frontend
           ports:
             - containerPort: 3000
 ---
