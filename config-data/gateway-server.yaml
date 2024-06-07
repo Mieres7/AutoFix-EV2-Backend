@@ -17,10 +17,9 @@ spring:
       globalcors:
         cors-configurations:
           "[/**]":
-            allowed-origin-patterns: "*"
-            allowed-methods: "*"
-            allowed-headers: "*"
-            allow-credentials: true
+            allowedOrigins: "*"
+            allowedMethods: "*"
+            allowedHeaders: "*"
       routes:
         - id: ms-vehicle
           uri: lb://ms-vehicle
