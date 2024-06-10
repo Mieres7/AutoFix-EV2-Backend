@@ -8,8 +8,8 @@ INSERT INTO brand(bonus, bonus_amount, discount, brand_id, brand_name, period) V
 (false, 0, 0, 'VOLKSWAGEN', '01-2024'),
 (false, 0, 0, 'MAZDA', '01-2024'),
 (false, 0, 0, 'SUBARU', '01-2024'),
-(false, 0, 0,, 'KIA', '01-2024'),
-(false, 0, 0,, 'MITSUBISHI', '01-2024'),
-(false, 0, 0,, 'BMW', '01-2024'),
-(false, 0, 0,, 'MERCEDES-BENZ', '01-2024'),
-(false, 0, 0,, 'AUDI', '01-2024
+(false, 0, 0, 'KIA', '01-2024'),
+(false, 0, 0, 'MITSUBISHI', '01-2024'),
+(false, 0, 0, 'BMW', '01-2024'),
+(false, 0, 0, 'MERCEDES-BENZ', '01-2024'),
+(false, 0, 0, 'AUDI', '01-2024')
