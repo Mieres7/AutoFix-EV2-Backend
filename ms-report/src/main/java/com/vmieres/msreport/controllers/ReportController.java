@@ -4,11 +4,9 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.vmieres.msreport.dto.DateDto;
 import com.vmieres.msreport.dto.RepairUpdateReportDto;
 import com.vmieres.msreport.dto.ReportListDto;
 import com.vmieres.msreport.entities.ReportEntity;

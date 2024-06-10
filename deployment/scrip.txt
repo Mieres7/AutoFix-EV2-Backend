@@ -1,0 +1,79 @@
+-------------------- PREPARE BEFORE --------------------
+Abrir varias terminales en la carpeta deplyment del backend. 
+
+        DEPLOYMENT | GATEWAY SERVICE | FRONTEND SERVICE
+
+-------------------- WARNING DOCKER -----------------------
+
+                docker context use default
+
+-------------------- INICIO KUBERNETES --------------------
+
+                      minikube start
+
+-------------------- CONFIGS --------------------
+
+kubectl apply -f postgres-config-map.yaml
+kubectl apply -f postgres-secrets.yaml
+
+-------------------- DATABSES -----------------------------
+
+acceder a la terminal de la db
+kubectl exec -it NOMBRE-POD -- /bin/bash
+psql -U postgres
+listado de db: \l
+acceder a db: \c NOMBRE-DB
+
+kubectl apply -f db-repair-deployment-service.yaml
+kubectl apply -f db-repairlist-deployment-service.yaml
+kubectl apply -f db-report-deployment-service.yaml
+kubectl apply -f db-vehicle-deployment-service.yaml
+
+Para mover los archivos sql a KUBERNETES
+kubectl cp sqlRepairList.sql NOMBRE-POD:/home
+kubectl cp sqlReport.sql NOMBRE-POD:/home
+kubectl cp sqlVehicle.sql NOMBRE-POD:/home
+
+Hay que haver exec y luego cd /home para poder ver el archivos
+
+psql -U postgres msrepairlistdb < sqlRepairList.sql
+psql -U postgres msreportdb < sqlReport.sql
+psql -U postgres msvehicledb < sqlVehicle.sql
+
+-------------------- SERVICES --------------------
+
+kubectl apply -f config-server-deployment-service.yaml
+kubectl apply -f eureka-server-deployment-service.yaml
+kubectl apply -f gateway-server-deployment-service.yaml
+
+kubectl apply -f ms-repair-deployment-service.yaml
+kubectl apply -f ms-repairlist-deployment-service.yaml
+kubectl apply -f ms-vehicle-deployment-service.yaml
+kubectl apply -f ms-report-deployment-service.yaml
+
+-------------------- FRONTEND --------------------
+
+UNA VEZ CREADOS TODOS SE CREA EL FRONTEND. HAY QUE HACER EL SERVICE DEL GATEWAY Y PONER EL PUERTO QUE NOS ENTREGA EN EL FRONTEND
+
+kubectl get services - solo para ver los nombres.
+minikube service gateway-server-service 
+SE CAMBIA EL PUERTO EN EL FRONTEND
+npm run build
+docker build -t mieres/frontend .
+docker push mieres/frontend
+kubectl apply -f frontend-deployment-service.yaml (terminal 1)
+minikube service frontend-server-service          (terminal 2)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
