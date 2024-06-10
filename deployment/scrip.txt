@@ -36,7 +36,7 @@ kubectl cp sqlVehicle.sql NOMBRE-POD:/home
 
 Hay que haver exec y luego cd /home para poder ver el archivos
 
-psql -U postgres msrepairlistdb < sqlRepairList.sql
+        psql -U postgres msrepairlistdb < sqlRepairList.sql
 psql -U postgres msreportdb < sqlReport.sql
 psql -U postgres msvehicledb < sqlVehicle.sql
 
@@ -62,7 +62,7 @@ npm run build
 docker build -t mieres/frontend .
 docker push mieres/frontend
 kubectl apply -f frontend-deployment-service.yaml (terminal 1)
-minikube service frontend-server-service          (terminal 2)
+minikube service frontend-service          (terminal 2)
 
 
 
