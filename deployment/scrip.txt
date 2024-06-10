@@ -36,12 +36,12 @@ kubectl cp sqlVehicle.sql NOMBRE-POD:/home
 
 Hay que haver exec y luego cd /home para poder ver el archivos
 
-        psql -U postgres msrepairlistdb < sqlRepairList.sql
+psql -U postgres msrepairlistdb < sqlRepairList.sql
 psql -U postgres msreportdb < sqlReport.sql
 psql -U postgres msvehicledb < sqlVehicle.sql
 
 -------------------- SERVICES --------------------
-
+        
 kubectl apply -f config-server-deployment-service.yaml
 kubectl apply -f eureka-server-deployment-service.yaml
 kubectl apply -f gateway-server-deployment-service.yaml

@@ -1,4 +1,4 @@
-INSERT INTO brand(bonus, bonus_amount, discount, brand_id, brand_name, period) VALUES
+INSERT INTO brand(bonus, bonus_amount, discount,  brand_name, period) VALUES
 (true, 0, 0, 'TOYOTA','01-2024'),
 (true, 0, 0, 'FORD','01-2024'),
 (true, 0, 0, 'HYUNDAI','01-2024'),
